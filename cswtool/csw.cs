@@ -79,6 +79,8 @@ namespace cswtool
             for (int i = 0; i < entries.Count; i++)
                 entries[i].writeToStream(wrt);
 
+            util.padTo(wrt, 0x20);
+
             var size = (int)wrt.BaseStream.Position;
 
             wrt.BaseStream.Position = 0;

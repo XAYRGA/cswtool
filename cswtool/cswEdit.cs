@@ -24,6 +24,11 @@ namespace cswtool
         {
             if (cswOpen.ShowDialog()==DialogResult.OK)
             {
+                Program.Engine.RemoveAllSoundSources();
+                for (int i = 0; i < Sounds.Count; i++)
+                    Sounds[i].Dispose();
+                Sounds = new List<ISoundSource>();
+
                 var cswReader = new Be.IO.BeBinaryReader(cswOpen.OpenFile());
                 try
                 {
@@ -44,7 +49,7 @@ namespace cswtool
                                 ChannelCount = 1,
                                 FrameCount = snd.Data.Length / 2,
                                 Format = SampleFormat.Signed16Bit,
-                                SampleRate = 8000,
+                                SampleRate = 6000,
                             };
                             var ss = Program.Engine.AddSoundSourceFromPCMData(snd.Data, snd.Name, caf);
                             Sounds.Add(ss);
@@ -101,7 +106,7 @@ namespace cswtool
                 var iSS = cswData.entries[soundList.SelectedIndex];
 
                 var bb = new wsysbuilder.PCM16WAV();
-                bb.sampleRate = 8000;
+                bb.sampleRate = 6000;
                 bb.channels = 1;
                 bb.buffer = util.pcm16ByteToShort(iSS.Data);
                 bb.sampleCount = bb.buffer.Length;
@@ -188,7 +193,7 @@ namespace cswtool
                 MessageBox.Show($"WAV has too many channels: {wav.channels} (max: 1)");
                 return;
             }
-            if (wav.sampleRate > 8000)            
+            if (wav.sampleRate > 6000)            
                 if (MessageBox.Show("Your WAV's samplerate is > 8000hz\nThis means that it will end up reaaaallllyyyy slloooowwwww when played on real hardware. (you need to downsample)\r\n\r\nWant to continue?","Warning",MessageBoxButtons.OKCancel)!=DialogResult.OK)            
                     return;
 
@@ -204,7 +209,7 @@ namespace cswtool
                 ChannelCount = 1,
                 FrameCount = wav.sampleCount,
                 Format = SampleFormat.Signed16Bit,
-                SampleRate = 8000,
+                SampleRate = 6000,
             };
             var ss = Program.Engine.AddSoundSourceFromPCMData(iSS.Data, iSS.Name, caf);
             Sounds[soundList.SelectedIndex] = ss;
@@ -221,10 +226,18 @@ namespace cswtool
 
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var bw = new Be.IO.BeBinaryWriter(File.OpenWrite("TEST.CSW"));
+            if (cswSaveAs.ShowDialog() != DialogResult.OK)
+                return;
+
+            var bw = new Be.IO.BeBinaryWriter(cswSaveAs.OpenFile());
             cswData.writeToStream(bw);
             bw.Flush();
             bw.Close();
+
+        }
+
+        private void bctSaveAs_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
+        {
 
         }
     }

@@ -109,7 +109,7 @@
             // programInfoToolStripMenuItem
             // 
             this.programInfoToolStripMenuItem.Name = "programInfoToolStripMenuItem";
-            this.programInfoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.programInfoToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.programInfoToolStripMenuItem.Text = "Program Info";
             this.programInfoToolStripMenuItem.Click += new System.EventHandler(this.programInfoToolStripMenuItem_Click);
             // 
@@ -131,7 +131,9 @@
             // 
             // bctSaveAs
             // 
+            this.bctSaveAs.Filter = "BCT File (*.bct)|*.bct|All files (*.*)|*.*";
             this.bctSaveAs.Title = "Save BCT as";
+            this.bctSaveAs.FileOk += new System.ComponentModel.CancelEventHandler(this.bctSaveAs_FileOk);
             // 
             // soundList
             // 
