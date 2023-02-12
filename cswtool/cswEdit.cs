@@ -40,6 +40,7 @@ namespace cswtool
                         var bctReader = new Be.IO.BeBinaryReader(bctOpen.OpenFile());
                         cswData.readBCTFromStream(bctReader);
 
+                        soundList.Items.Clear();
                         ///// SETUP SOUND ENGINE /////
                         for (int i = 0; i < cswData.entries.Count; i++)
                         {

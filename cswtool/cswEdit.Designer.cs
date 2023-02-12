@@ -81,14 +81,14 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.saveAsToolStripMenuItem.Text = "Save As";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
@@ -260,11 +260,12 @@
             this.errorText.AutoSize = true;
             this.errorText.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.errorText.ForeColor = System.Drawing.Color.IndianRed;
-            this.errorText.Location = new System.Drawing.Point(239, 369);
+            this.errorText.Location = new System.Drawing.Point(239, 359);
             this.errorText.Name = "errorText";
-            this.errorText.Size = new System.Drawing.Size(252, 15);
+            this.errorText.Size = new System.Drawing.Size(281, 30);
             this.errorText.TabIndex = 13;
-            this.errorText.Text = "Sounds with < 400 samples will be inaudible.";
+            this.errorText.Text = "Sounds with < 400 samples will be inaudible.\r\nBut only in the tool. This doesn\'t " +
+    "affect the game.";
             this.errorText.Visible = false;
             // 
             // wavOpen
